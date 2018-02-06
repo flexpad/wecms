@@ -1,0 +1,79 @@
+<style lang="less">
+  .container {
+    -webkit-font-smoothing: antialiased;
+    padding: 0 25rpx;
+    height: auto;
+  }
+  .title {
+    font-size: 20pt;
+    font-weight: 400;
+  }
+  .source {
+    color: #666;
+    font-size: 12pt;
+    text-align: left;
+    width: 100%;
+    margin: 15rpx 0 20rpx;
+  }
+  .article-image {
+    width: 100%;
+    height:200px;
+    background-color: #e8e8e8;
+  }
+  .paragrah {
+    &:after {
+      content: "";
+      flex: auto;
+    }
+    &.description{
+      margin-bottom: 40rpx;
+      color: #999;
+    }
+    -webkit-font-smoothing: antialiased;
+    width: 100%;
+    font-size:14pt;
+    color: #424242;
+    margin: 20rpx 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap:wrap;
+    .word{
+      display: inline-flex;
+      padding: 0 5px;
+      border-radius: 4px;
+      -webkit-transition: all .1s;
+      padding:10rpx 4rpx 20rpx;
+      line-height: 14rpx;
+      margin-right:2pt;
+      &.highlight{
+        background-color: rgb(32, 158, 133);
+        color: #fff;
+      }
+    }
+  }
+</style>
+<template>
+  <web-view src="{{url}}"></web-view>
+</template>
+<script>
+  import wepy from 'wepy'
+  import X2JS from '../util/x2js.js'
+  // import Infomation from '../components/information'
+
+  export default class Article extends wepy.page {
+    config = {
+      navigationBarTitleText: 'News Lite'
+    };
+
+    data = {
+      url: 'https://www.shanbay.com/news/articles/owyxe/share'
+    };
+
+    onLoad (options = {}) {
+      options.id = options.id || 'oivfz'
+      console.log('options.id is', options)
+      this.data.url = `https://www.shanbay.com/api/v2/news/articles/${options.id}/share`
+      console.log('real url is: ', this.data.url)
+    }
+  }
+</script>
