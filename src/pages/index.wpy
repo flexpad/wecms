@@ -129,7 +129,8 @@
         })
       }
     }
-    onLoad() {
+    async onLoad() {
+      /* console.log('Called in onLoad.') */
       wx.showLoading({
         title: '加载中'
       })
@@ -140,6 +141,7 @@
       wx.stopPullDownRefresh()
     }
     onReachBottom() {
+      /* console.log('Called in onReachBottom.') */
       this.currentPage++
       if (this.currentPage >= 15) { // 最多只能加载15页
         this.isLoadingMore = false
@@ -147,6 +149,7 @@
         this.$apply()
         return
       }
+      /* console.log('Loadmore is called. page: ', this.currentPage) */
       this.isLoadingMore = true
       this.loadList()
     }
@@ -163,8 +166,12 @@
           if (res.data.msg === 'SUCCESS') {
             this.detail.objects = this.detail.objects.concat(res.data.data.objects)
           }
-          this.$apply()
+
           wx.hideLoading()
+          this.$apply()
+          this.data.info = 'OK'
+          /* console.log('info:', this.data.info)
+          console.log('The data is loading! ', this.detail.objects) */
         }
       })
     }
