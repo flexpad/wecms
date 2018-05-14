@@ -27,8 +27,8 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/camera',
       'pages/index',
+      'pages/camera',
       'pages/article'
     ],
     window: {
@@ -44,22 +44,22 @@ export default class extends wepy.app {
       'backgroundColor': '#ffffff',
       'borderStyle': 'black',
       'list': [{
-        'pagePath': 'pages/home',
+        'pagePath': 'pages/index',
         'text': '首页',
         'iconPath': 'assets/icon_home.png',
         'selectedIconPath': 'assets/icon_home_active.png'
       }, {
-        'pagePath': 'pages/classify',
+        'pagePath': 'pages/index',
         'text': '表现',
         'iconPath': 'assets/icon_classify.png',
         'selectedIconPath': 'assets/icon_classify_active.png'
       }, {
-        'pagePath': 'pages/shop_cart',
+        'pagePath': 'pages/camera',
         'text': '试卷点评',
-        'iconPath': 'assets/icon_shop_cart.png',
-        'selectedIconPath': 'assets/icon_shop_cart_active.png'
+        'iconPath': 'assets/record.jpg',
+        'selectedIconPath': 'assets/record.jpg'
       }, {
-        'pagePath': 'pages/info',
+        'pagePath': 'pages/index',
         'text': '我',
         'iconPath': 'assets/icon_info.png',
         'selectedIconPath': 'assets/icon_info_active.png'
