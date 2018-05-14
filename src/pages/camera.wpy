@@ -1,0 +1,87 @@
+<style lang="less">
+  .camera{
+    display: flex;
+    justify-content: center;
+    height: 800rpx;
+    //width: 500rpx;
+  }
+  .cview {
+    display: flex;
+    justify-content: center;
+  }
+  .pause,.time {
+  /*flex: 1;
+  height: 50px;*/
+  }
+  .time {
+  text-align: center;
+  background-color: rgba(0, 0, 0, .5);
+  color: white;
+  line-height: 50px;
+  }
+  .img {
+  width: 40px;
+  height: 40px;
+  margin: 5px auto;
+  }
+</style>
+
+<template>
+  <view class="cview">
+    <camera class="camera">
+      <cover-view class="container">
+        <cover-view class="takePhoto" bindtap="startTakePhoto">
+          <cover-image class="img" src="/assets/record.png">
+          </cover-image>
+        </cover-view>
+        <cover-view class="time">00:00</cover-view>
+      </cover-view>
+    </camera>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  export default class Camera extends wepy.page {
+    config = {
+      navigationBarTitleText: 'We CMS',
+      window: {
+        enablePullDownRefresh: true
+      }
+    }
+    onLoad() {
+      if (wx.createCameraContext()) {
+        this.cameraContext = wx.createCameraContext('myCamera')
+      } else {
+        // 如果希望用户在最新版本的客户端上体验您的小程序，可以这样子提示
+        wx.showModal({
+          title: '提示',
+          content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
+        })
+      }
+    }
+    methods = {
+      startTakePhoto() {
+        this.cameraContext.startRecord({
+          success: function (res) {
+            console.log('成功！')
+            console.log(res)
+          },
+          fail: function (res) {
+            console.log('失败！')
+            console.log(res)
+          },
+          complete: function (res) {
+            console.log('complete！')
+            console.log(res)
+          },
+          timeoutCallback: function (res) {
+            console.log('超时')
+            console.log(res)
+          }
+        })
+      }
+    }
+  }
+
+</script>
